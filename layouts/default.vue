@@ -1,55 +1,60 @@
+<!-- *************************************************************************
+	TEMPLATE
+************************************************************************* -->
+
 <template>
-  <div>
-    <nuxt />
+  <div class="containar">
+    <!-- Header -->
+    <header class="header">
+      <h1 class="header__heading">SiteTitle</h1>
+      <ul class="header__menu">
+        <li class="menu__item"><a href="" class="menu__link">menu1</a></li>
+        <li class="menu__item"><a href="" class="menu__link">menu1</a></li>
+        <li class="menu__item"><a href="" class="menu__link">menu1</a></li>
+        <li class="menu__item"><a href="" class="menu__link">menu1</a></li>
+        <li class="menu__item"><a href="" class="menu__link">menu1</a></li>
+      </ul>
+    </header>
+
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <section class="sidebar__widget">
+        <h2 class="widget__heading">title</h2>
+        <div class="widget__content">
+          texttext
+        </div>
+      </section>
+      <section class="sidebar__widget">
+        <h2 class="widget__heading">title</h2>
+        <div class="widget__content">
+          texttext
+        </div>
+      </section>
+    </aside>
+
+    <!-- Main -->
+    <main class="content">
+      <!-- Breadcrumb -->
+      <div class="breadcrumb">
+        <ul class="breadcrumb__list">
+          <li class="list__item"><a href="" class="list__link">Home</a></li>
+          <li class="list__item"><a href="" class="list__link">Page1</a></li>
+          <li class="list__item"><a href="" class="list__link">Page2</a></li>
+        </ul>
+      </div>
+
+      <!-- Page -->
+      <div class="page">
+        <nuxt />
+      </div>
+    </main>
+
+    <footer class="footer">
+      <p><small>&copy; 2019 sa2cie</small></p>
+    </footer>
   </div>
 </template>
 
-<style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
-}
-
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
-}
-
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
-
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
-}
+<style lang="scss">
+@import '@/assets/css/base.scss';
 </style>
