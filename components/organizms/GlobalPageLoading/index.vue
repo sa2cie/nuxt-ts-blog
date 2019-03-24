@@ -3,21 +3,22 @@
 ************************************************************************* -->
 
 <template>
-  <div class="page">
-    <box>
-      <h2 class="page__heading elevation-3 blue-grey darken-4 white--text">
-        Related Posts
-      </h2>
-      <media-card-list :data="relatedPostDatas" />
-      <div class="text-xs-center">
-        <v-pagination
-          v-model="valCurrentPage"
-          :length="5"
-          :total-visible="7"
-          color="teal"
-        ></v-pagination>
-      </div>
-    </box>
+  <div :class="['pageLoading', isLoadingFin ? '--hidden' : '']">
+    <!-- <span :class="getClassHidden">{{ getClassHidden }}</span> -->
+    <v-progress-linear
+      v-if="valProgress !== null"
+      v-model="valProgress"
+      class="pageLoading__progress"
+      color="teal"
+    >
+    </v-progress-linear>
+    <v-progress-circular
+      v-if="showCircle"
+      :size="50"
+      color="teal"
+      class="pageLoading__circle"
+      indeterminate
+    ></v-progress-circular>
   </div>
 </template>
 

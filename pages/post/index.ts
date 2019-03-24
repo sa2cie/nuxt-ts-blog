@@ -2,20 +2,19 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 // LAYOUT
-import Box from '@/layouts/blocks/box.vue'
+const Box = () => import('@/layouts/blocks/box.vue')
 
 // COMPONENT
-const MediaCardList = () => import('@/components/organizms/MediaCardList')
+const PostCard = () => import('@/components/organizms/PostCard')
 
 @Component({
   components: {
     Box,
-    MediaCardList
+    PostCard,
   }
 })
-export default class Index extends Vue {
-  valCurrentPage: number = 1;
-  private _post = {
+export default class Post extends Vue {
+  post = {
     id: 1,
     title: 'Nuxt.js に FontAwesome 5 を導入する方法を雑に紹介する',
     category: ['Vue'],
@@ -356,12 +355,4 @@ export default class Index extends Vue {
     image: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
     thumb: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
   };
-
-  relatedPostDatas: any[] = [
-    this._post,
-    this._post,
-    this._post,
-    this._post,
-    this._post
-  ]
 }

@@ -1,55 +1,76 @@
+<!-- *************************************************************************
+	TEMPLATE
+************************************************************************* -->
+
 <template>
-  <div>
-    <nuxt />
-  </div>
+  <container>
+    <!-- Layout - content -->
+    <section class="l-content">
+      <!-- Layout - main -->
+      <main class="l-main">
+        <nuxt></nuxt>
+      </main>
+
+      <!-- Layout - sidebar -->
+      <aside class="l-sidebar">
+        <global-sidebar />
+      </aside>
+    </section>
+  </container>
 </template>
 
-<style>
-html {
-  font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, 'Segoe UI',
-    Roboto, 'Helvetica Neue', Arial, sans-serif;
-  font-size: 16px;
-  word-spacing: 1px;
-  -ms-text-size-adjust: 100%;
-  -webkit-text-size-adjust: 100%;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-font-smoothing: antialiased;
-  box-sizing: border-box;
+<!-- *************************************************************************
+	SCRIPT
+************************************************************************* -->
+
+<script lang="ts">
+// NPM
+import { Component, Vue } from 'nuxt-property-decorator'
+
+// COMPONENT
+const Container = () => import('@/layouts/container.vue')
+const GlobalSidebar = () => import('@/components/organizms/GlobalSidebar')
+
+@Component({
+  components: {
+    Container,
+    GlobalSidebar
+  }
+})
+export default class Default extends Vue {}
+</script>
+
+<!-- *************************************************************************
+	STYLE
+************************************************************************* -->
+
+<style lang="scss" scoped>
+.l-content {
+  display: flex;
 }
 
-*,
-*:before,
-*:after {
-  box-sizing: border-box;
-  margin: 0;
+.l-sidebar {
+  width: 354px;
+  margin-bottom: 24px;
+  padding: 0 16px 8px 8px;
 }
 
-.button--green {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #3b8070;
-  color: #3b8070;
-  text-decoration: none;
-  padding: 10px 30px;
+.l-main {
+  flex: 1;
+  word-wrap: break-word;
+  min-width: 0;
+  margin-bottom: 24px;
+  padding: 0 16px 8px 8px;
 }
 
-.button--green:hover {
-  color: #fff;
-  background-color: #3b8070;
-}
+.postCardList {
+  padding-bottom: 0;
+  &__item {
+    border-bottom: 1px solid #e0e0e0;
 
-.button--grey {
-  display: inline-block;
-  border-radius: 4px;
-  border: 1px solid #35495e;
-  color: #35495e;
-  text-decoration: none;
-  padding: 10px 30px;
-  margin-left: 15px;
-}
-
-.button--grey:hover {
-  color: #fff;
-  background-color: #35495e;
+    &:last-child {
+      border-bottom: none;
+    }
+  }
 }
 </style>

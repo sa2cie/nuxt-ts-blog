@@ -1,0 +1,25 @@
+/* *************************************************************************
+  Base - reading global
+************************************************************************* */
+html {
+  @font-face { font-family: "Yu Gothic M"; src: local("Yu Gothic Medium"); }
+  @font-face { font-family: "Yu Gothic M"; src: local("Yu Gothic Bold"); font-weight: bold; }
+  font-family: -apple-system, BlinkMacSystemFont, "Helvetica Neue", "Segoe UI", Helvetica, "游ゴシック体", YuGothic, "Yu Gothic M", "游ゴシック Medium", "Yu Gothic Medium", "メイリオ", Meiryo, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  background: #f7f7f7;
+}
+
+ul, li {
+  list-style: none;
+  padding: 0;
+}
+
+a {
+  &:link,
+  &:visited {
+    color: #009688;
+  }
+  &:hover,
+  &:active {
+    text-decoration: underline;
+  }
+}

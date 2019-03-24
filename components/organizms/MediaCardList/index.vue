@@ -3,22 +3,19 @@
 ************************************************************************* -->
 
 <template>
-  <div class="page">
-    <box>
-      <h2 class="page__heading elevation-3 blue-grey darken-4 white--text">
-        Related Posts
-      </h2>
-      <media-card-list :data="relatedPostDatas" />
-      <div class="text-xs-center">
-        <v-pagination
-          v-model="valCurrentPage"
-          :length="5"
-          :total-visible="7"
-          color="teal"
-        ></v-pagination>
-      </div>
-    </box>
-  </div>
+  <ul class="mediaCardList">
+    <li v-for="(media, index) in data" :key="index" class="mediaCardList__item">
+      <media-card
+        :id="media.id"
+        :title="media.title"
+        :category="media.category[0]"
+        :datetime="media.datetime"
+        :description="media.description"
+        :image="media.image"
+        :thumb="media.thumb"
+      />
+    </li>
+  </ul>
 </template>
 
 <!-- *************************************************************************
