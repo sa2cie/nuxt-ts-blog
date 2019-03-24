@@ -3,58 +3,74 @@
 ************************************************************************* -->
 
 <template>
-  <div class="containar">
-    <!-- Header -->
-    <header class="header">
-      <h1 class="header__heading">SiteTitle</h1>
-      <ul class="header__menu">
-        <li class="menu__item"><a href="" class="menu__link">menu1</a></li>
-        <li class="menu__item"><a href="" class="menu__link">menu1</a></li>
-        <li class="menu__item"><a href="" class="menu__link">menu1</a></li>
-        <li class="menu__item"><a href="" class="menu__link">menu1</a></li>
-        <li class="menu__item"><a href="" class="menu__link">menu1</a></li>
-      </ul>
-    </header>
+  <container>
+    <!-- Layout - content -->
+    <section class="l-content">
+      <!-- Layout - main -->
+      <main class="l-main">
+        <nuxt></nuxt>
+      </main>
 
-    <!-- Sidebar -->
-    <aside class="sidebar">
-      <section class="sidebar__widget">
-        <h2 class="widget__heading">title</h2>
-        <div class="widget__content">
-          texttext
-        </div>
-      </section>
-      <section class="sidebar__widget">
-        <h2 class="widget__heading">title</h2>
-        <div class="widget__content">
-          texttext
-        </div>
-      </section>
-    </aside>
-
-    <!-- Main -->
-    <main class="content">
-      <!-- Breadcrumb -->
-      <div class="breadcrumb">
-        <ul class="breadcrumb__list">
-          <li class="list__item"><a href="" class="list__link">Home</a></li>
-          <li class="list__item"><a href="" class="list__link">Page1</a></li>
-          <li class="list__item"><a href="" class="list__link">Page2</a></li>
-        </ul>
-      </div>
-
-      <!-- Page -->
-      <div class="page">
-        <nuxt />
-      </div>
-    </main>
-
-    <footer class="footer">
-      <p><small>&copy; 2019 sa2cie</small></p>
-    </footer>
-  </div>
+      <!-- Layout - sidebar -->
+      <aside class="l-sidebar">
+        <global-sidebar />
+      </aside>
+    </section>
+  </container>
 </template>
 
-<style lang="scss">
-@import '@/assets/css/base.scss';
+<!-- *************************************************************************
+	SCRIPT
+************************************************************************* -->
+
+<script lang="ts">
+// NPM
+import { Component, Vue } from 'nuxt-property-decorator'
+
+// COMPONENT
+const Container = () => import('@/layouts/container.vue')
+const GlobalSidebar = () => import('@/components/organizms/GlobalSidebar')
+
+@Component({
+  components: {
+    Container,
+    GlobalSidebar
+  }
+})
+export default class Default extends Vue {}
+</script>
+
+<!-- *************************************************************************
+	STYLE
+************************************************************************* -->
+
+<style lang="scss" scoped>
+.l-content {
+  display: flex;
+}
+
+.l-sidebar {
+  width: 354px;
+  margin-bottom: 24px;
+  padding: 0 16px 8px 8px;
+}
+
+.l-main {
+  flex: 1;
+  word-wrap: break-word;
+  min-width: 0;
+  margin-bottom: 24px;
+  padding: 0 16px 8px 8px;
+}
+
+.postCardList {
+  padding-bottom: 0;
+  &__item {
+    border-bottom: 1px solid #e0e0e0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+  }
+}
 </style>

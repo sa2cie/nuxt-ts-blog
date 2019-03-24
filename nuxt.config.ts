@@ -1,6 +1,7 @@
 import { Configuration } from 'webpack'
 import { Context } from '@nuxt/vue-app'
 import pkg from './package.json'
+import { SITE_NAME } from './assets/js/define'
 
 export default {
   mode: 'universal',
@@ -9,7 +10,10 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: `ページタイトル | ${SITE_NAME}`,
+    htmlAttrs: {
+      lang: 'ja'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -26,12 +30,19 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#009688' },
 
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    'normalize.css',
+    '@fortawesome/fontawesome-free-webfonts',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-brands.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-regular.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css',
+    '@/assets/css/base.scss'
+  ],
 
   /*
    ** Plugins to load before mounting the App

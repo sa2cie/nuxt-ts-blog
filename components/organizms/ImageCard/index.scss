@@ -1,0 +1,10 @@
+.imageCard {
+  &__category {
+    display: block;
+  }
+
+  &__title {
+    display: block;
+    line-height: 1.38;
+  }
+}

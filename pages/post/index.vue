@@ -6,17 +6,20 @@
   <div class="page">
     <box>
       <h2 class="page__heading elevation-3 blue-grey darken-4 white--text">
-        Related Posts
+        {{ post.title }}
       </h2>
-      <media-card-list :data="relatedPostDatas" />
-      <div class="text-xs-center">
-        <v-pagination
-          v-model="valCurrentPage"
-          :length="5"
-          :total-visible="7"
-          color="teal"
-        ></v-pagination>
-      </div>
+      <section>
+        <post-card
+          :id="post.id"
+          :title="post.title"
+          :category="post.category[0]"
+          :datetime="post.datetime"
+          :description="post.description"
+          :article="post.article"
+          :image="post.image"
+          :thumb="post.thumb"
+        />
+      </section>
     </box>
   </div>
 </template>

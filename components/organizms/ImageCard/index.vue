@@ -3,22 +3,21 @@
 ************************************************************************* -->
 
 <template>
-  <div class="page">
-    <box>
-      <h2 class="page__heading elevation-3 blue-grey darken-4 white--text">
-        Related Posts
-      </h2>
-      <media-card-list :data="relatedPostDatas" />
-      <div class="text-xs-center">
-        <v-pagination
-          v-model="valCurrentPage"
-          :length="5"
-          :total-visible="7"
-          color="teal"
-        ></v-pagination>
+  <v-card class="imageCard elevation-0" @click="this.$router.push('/post/' + id)">
+    <div class="pt-3 pl-3 pr-3">
+      <v-img
+        class="white--text"
+        height="200px"
+        :src="image"
+      ></v-img>
+    </div>
+    <v-card-title>
+      <div>
+        <span class="imageCard__category grey--text">{{ category }}</span>
+        <span class="imageCard__title">{{ title }}</span>
       </div>
-    </box>
-  </div>
+    </v-card-title>
+  </v-card>
 </template>
 
 <!-- *************************************************************************

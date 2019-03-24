@@ -1,0 +1,28 @@
+.pageLoading {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #fff;
+  opacity: 0.98;
+  transition: opacity 0.2s ease;
+  z-index: 2000;
+  pointer-events: none;
+
+  &.--hidden {
+    opacity: 0;
+  }
+
+  &__progress {
+    margin: 0;
+  }
+
+  &__circle {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    margin-top: -25px;
+    margin-left: -25px;
+  }
+}
