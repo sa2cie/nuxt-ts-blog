@@ -1,7 +1,10 @@
 import { Configuration } from 'webpack'
 import { Context } from '@nuxt/vue-app'
 import pkg from './package.json'
-import { SITE_NAME } from './assets/js/define'
+import { CONFIG } from './assets/js/constants'
+
+// CONSTANTS
+const { SITE_NAME } = CONFIG;
 
 export default {
   mode: 'universal',
