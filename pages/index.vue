@@ -8,13 +8,23 @@
       <h2 class="page__heading elevation-3 blue-grey darken-4 white--text">
         Related Posts
       </h2>
-      <media-card-list :data="relatedPostDatas" />
+      <div class="page__posts">
+        <media-card-list :data="posts" />
+        <div v-if="isLoadingPosts" class="page__posts__loading">
+          <v-progress-circular
+            :size="50"
+            color="teal"
+            indeterminate
+          ></v-progress-circular>
+        </div>
+      </div>
       <div class="text-xs-center">
         <v-pagination
-          v-model="valCurrentPage"
-          :length="5"
+          v-model="currentPageCount"
+          :length="getPageLength"
           :total-visible="7"
           color="teal"
+          @input="handlePagenation"
         ></v-pagination>
       </div>
     </box>
