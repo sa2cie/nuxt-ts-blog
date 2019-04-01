@@ -1,0 +1,61 @@
+.postCard {
+  &__title {
+    text-align: center;
+    padding: 40px 40px 20px;
+  }
+
+  &__titlewrap {
+    width: 100%;
+  }
+
+  &__category {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  &__heading {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0 0 8px;
+    word-wrap:break-word;
+  }
+
+  &__date {
+    margin-bottom: 0;
+  }
+
+  &__description {
+    margin: 0 40px;
+    padding: 20px 0 40px;
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.8;
+    word-wrap:break-word;
+  }
+
+  &__body {
+    margin: 0 40px;
+    padding: 40px 0 40px;
+    border-top: 1px solid #e0e0e0;
+    text-align: left;
+    font-size: 15px;
+    line-height: 1.8;
+    word-wrap:break-word;
+
+    img {
+      display: block;
+      width: 100%;
+    }
+  }
+
+  &__action {
+    padding: 0 40px 40px;
+    text-align: center;
+  }
+
+  &__button {
+    margin: 0 auto;
+  }
+}

@@ -1,6 +1,18 @@
 import { Configuration } from 'webpack'
 import { Context } from '@nuxt/vue-app'
 import pkg from './package.json'
+import { getConfigForKeys } from './libs/config.js'
+import { createClient } from './plugins/contentful.js'
+import { CONFIG } from './assets/js/constants'
+
+// CONSTANTS
+const { SITE_NAME } = CONFIG;
+const ctfConfig = getConfigForKeys([
+  'CTF_BLOG_POST_TYPE_ID',
+  'CTF_SPACE_ID',
+  'CTF_CDA_ACCESS_TOKEN'
+])
+const cdaClient = createClient(ctfConfig)
 
 export default {
   mode: 'universal',
@@ -9,7 +21,10 @@ export default {
    ** Headers of the page
    */
   head: {
-    title: pkg.name,
+    title: `ページタイトル | ${SITE_NAME}`,
+    htmlAttrs: {
+      lang: 'ja'
+    },
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -26,12 +41,19 @@ export default {
   /*
    ** Customize the progress-bar color
    */
-  loading: { color: '#fff' },
+  loading: { color: '#009688' },
 
   /*
    ** Global CSS
    */
-  css: [],
+  css: [
+    'normalize.css',
+    '@fortawesome/fontawesome-free-webfonts',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-brands.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-regular.css',
+    '@fortawesome/fontawesome-free-webfonts/css/fa-solid.css',
+    '@/assets/css/base.scss'
+  ],
 
   /*
    ** Plugins to load before mounting the App
@@ -44,7 +66,8 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    "@nuxtjs/vuetify"
   ],
   /*
    ** Axios module configuration
@@ -73,5 +96,17 @@ export default {
         )
       }
     }
+  },
+  generate: {
+    routes() {
+      return cdaClient
+        .getEntries({ content_type: ctfConfig.CTF_BLOG_POST_TYPE_ID })
+        .then(entries => [...entries.items.map(entry => `/post?id=${entry.sys.id}`)])
+    }
+  },
+  env: {
+    CTF_SPACE_ID: ctfConfig.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: ctfConfig.CTF_CDA_ACCESS_TOKEN,
+    CTF_BLOG_POST_TYPE_ID: ctfConfig.CTF_BLOG_POST_TYPE_ID
   }
 }
