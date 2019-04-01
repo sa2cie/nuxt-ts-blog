@@ -1,5 +1,5 @@
-import * as CONFIG from '@/assets/js/constants/config'
-import * as ERROR from '@/assets/js/constants/error'
+import * as CONFIG from './config'
+import * as ERROR from './error'
 
 export {
   CONFIG,

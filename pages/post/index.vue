@@ -12,10 +12,10 @@
         <post-card
           :id="post.id"
           :title="post.title"
-          :category="post.category[0]"
-          :datetime="post.datetime"
+          :category="post.category"
+          :date="post.date"
           :description="post.description"
-          :article="post.article"
+          :body="post.body"
           :image="post.image"
           :thumb="post.thumb"
         />
