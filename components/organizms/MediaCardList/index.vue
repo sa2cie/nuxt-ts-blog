@@ -3,13 +3,13 @@
 ************************************************************************* -->
 
 <template>
-  <ul class="mediaCardList">
+  <ul v-if="data.length !== 0" class="mediaCardList">
     <li v-for="(media, index) in data" :key="index" class="mediaCardList__item">
       <media-card
         :id="media.id"
         :title="media.title"
-        :category="media.category[0]"
-        :datetime="media.datetime"
+        :category="media.category"
+        :date="media.date"
         :description="media.description"
         :image="media.image"
         :thumb="media.thumb"

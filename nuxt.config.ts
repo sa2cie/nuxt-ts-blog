@@ -1,10 +1,18 @@
 import { Configuration } from 'webpack'
 import { Context } from '@nuxt/vue-app'
 import pkg from './package.json'
+import { getConfigForKeys } from './libs/config.js'
+import { createClient } from './plugins/contentful.js'
 import { CONFIG } from './assets/js/constants'
 
 // CONSTANTS
 const { SITE_NAME } = CONFIG;
+const ctfConfig = getConfigForKeys([
+  'CTF_BLOG_POST_TYPE_ID',
+  'CTF_SPACE_ID',
+  'CTF_CDA_ACCESS_TOKEN'
+])
+const cdaClient = createClient(ctfConfig)
 
 export default {
   mode: 'universal',
@@ -88,5 +96,17 @@ export default {
         )
       }
     }
+  },
+  generate: {
+    routes() {
+      return cdaClient
+        .getEntries({ content_type: ctfConfig.CTF_BLOG_POST_TYPE_ID })
+        .then(entries => [...entries.items.map(entry => `/post?id=${entry.sys.id}`)])
+    }
+  },
+  env: {
+    CTF_SPACE_ID: ctfConfig.CTF_SPACE_ID,
+    CTF_CDA_ACCESS_TOKEN: ctfConfig.CTF_CDA_ACCESS_TOKEN,
+    CTF_BLOG_POST_TYPE_ID: ctfConfig.CTF_BLOG_POST_TYPE_ID
   }
 }
