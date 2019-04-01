@@ -9,6 +9,6 @@ const MediaCard = () => import('@/components/organizms/MediaCard')
     MediaCard
   }
 })
-export default class MediaList extends Vue {
+export default class MediaCardList extends Vue {
   @Prop({ type: Array, required: true }) readonly data!: any[];
 }

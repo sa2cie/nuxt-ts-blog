@@ -2,7 +2,10 @@
 import { Component, Vue } from 'nuxt-property-decorator'
 
 // PRODUCT
-import { SITE_NAME } from '@/assets/js/define'
+import { CONFIG } from '~/assets/js/constants'
+
+// CONSTANTS
+const { SITE_NAME } = CONFIG;
 
 // INTERFACE
 interface Copyright {

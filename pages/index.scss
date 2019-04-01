@@ -5,4 +5,25 @@
     margin-bottom: 16px;
     text-align: center;
   }
+
+  &__posts {
+    position: relative;
+    min-height: 400px;
+
+    &__loading {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: #fff;
+
+      svg {
+        position: absolute;
+        left: 50%;
+        top: 100px;
+        margin-left: -25px;
+      }
+    }
+  }
 }
