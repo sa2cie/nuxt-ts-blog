@@ -11,10 +11,6 @@ import PostCard from '@/components/organizms/PostCard'
 // UTILL
 import { getPostEntry } from '@/assets/js/utills/sync'
 
-// PLUGINS
-// import { createClient } from '@/plugins/contentful.js'
-// const client = createClient()
-
 // INTERFACE
 interface PostData {
   id : string;
@@ -45,8 +41,8 @@ export default class Post extends Vue {
     date: '',
   }
 
-  asyncData({ query }) {
-    return getPostEntry(query.id, (entry) => {
+  asyncData({ params }) {
+    return getPostEntry(params.id, (entry) => {
       const formatPost : PostData = {
         id: entry.sys.id,
         title: entry.fields.title,

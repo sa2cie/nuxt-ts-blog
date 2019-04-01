@@ -101,7 +101,7 @@ export default {
     routes() {
       return cdaClient
         .getEntries({ content_type: ctfConfig.CTF_BLOG_POST_TYPE_ID })
-        .then(entries => [...entries.items.map(entry => `/post?id=${entry.sys.id}`)])
+        .then(entries => [...entries.items.map(entry => `/post/${entry.sys.id}`)])
     }
   },
   env: {
