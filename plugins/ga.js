@@ -1,5 +1,4 @@
 /* eslint-disable */
-
 export default ({ app }) => {
   /*
   ** クライアントサイドかつプロダクションモードでのみ実行
@@ -15,7 +14,7 @@ export default ({ app }) => {
   /*
   ** 現在のページをセット
   */
-  ga('create', process.env.GA_TRACKING_ID, 'auto')
+  ga('create', process.env.CTF_GA_TRACKING_ID, 'auto')
   /*
   ** ルートが変更されるたびに毎回実行（初期化も実行される）
   */

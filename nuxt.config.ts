@@ -10,7 +10,8 @@ const { SITE_NAME } = CONFIG;
 const ctfConfig = getConfigForKeys([
   'CTF_BLOG_POST_TYPE_ID',
   'CTF_SPACE_ID',
-  'CTF_CDA_ACCESS_TOKEN'
+  'CTF_CDA_ACCESS_TOKEN',
+  'CTF_GA_TRACKING_ID'
 ])
 const cdaClient = createClient(ctfConfig)
 
@@ -109,6 +110,7 @@ export default {
   env: {
     CTF_SPACE_ID: ctfConfig.CTF_SPACE_ID,
     CTF_CDA_ACCESS_TOKEN: ctfConfig.CTF_CDA_ACCESS_TOKEN,
-    CTF_BLOG_POST_TYPE_ID: ctfConfig.CTF_BLOG_POST_TYPE_ID
+    CTF_BLOG_POST_TYPE_ID: ctfConfig.CTF_BLOG_POST_TYPE_ID,
+    CTF_GA_TRACKING_ID: ctfConfig.CTF_GA_TRACKING_ID
   }
 }
