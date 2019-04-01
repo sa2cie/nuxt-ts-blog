@@ -17,7 +17,7 @@
     </div>
 
     <div class="mediaCard__action">
-      <nuxt-link :to="{ path: 'post', query: { id } }">
+      <nuxt-link :to="{ name: 'post-id', params: { id } }">
         <v-btn depressed color="teal white--text" class="mediaCard__button">
           記事を読む
         </v-btn>
