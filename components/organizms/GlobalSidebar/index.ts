@@ -1,8 +1,19 @@
 // NPM
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
+
+// UTILL
+import { getPostEntries } from '@/assets/js/utills/sync';
 
 // COMPONENT
-const ImageCardList = () => import('@/components/organizms/ImageCardList')
+const ImageCardList = () => import('@/components/organizms/ImageCardList');
+
+// INTERFACE
+interface MediaData {
+  id : string;
+  title : string;
+  description : string;
+  image : string;
+}
 
 @Component({
   components: {
@@ -10,26 +21,33 @@ const ImageCardList = () => import('@/components/organizms/ImageCardList')
   }
 })
 export default class GlobalSidebar extends Vue {
-  private _post = {
-    id: 1,
-    title: 'Nuxt.js に FontAwesome 5 を導入する方法を雑に紹介する',
-    category: ['Vue'],
-    date: '2019/11/22',
-    description: 'CSSフレームワークに Bulma を使おうとしたところ、公式ドキュメントが FontAwesome 5 対応になってしました。Nuxt.js 用の FontAwesome パッケージとして @nuxtjs/font-awesome がありますが、こちらはまだ FontAwesome 4 にしか対応していないため他の導入方法を探しました。',
-    image: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
-    thumb: 'https://cdn.vuetifyjs.com/images/cards/desert.jpg',
-  };
+  public isLoadingRelatedMedias : boolean = false;
+  public relatedMediaDatas : MediaData[] = [];
 
-  relatedPostsData: any[] = [
-    this._post,
-    this._post,
-    this._post,
-    this._post,
-    this._post,
-    this._post,
-    this._post,
-    this._post,
-    this._post,
-    this._post
-  ]
+  /**
+   * requestRelatedMediaEntries
+   * @param {Object} params URLパラメータ
+   */
+  private requestRelatedMediaEntries (params) {
+    this.isLoadingRelatedMedias = true;
+    const type : string = String(process.env.CTF_BLOG_POST_TYPE_ID);
+    return getPostEntries(type, params, (entries) => {
+      const formatMedias : MediaData[] = entries.items
+        .map((value: { sys: any; fields: any; }) => {
+          const { sys, fields } = value;
+          return {
+            id: sys.id,
+            title: fields.title,
+            category: fields.categoryName,
+            image: fields.thumb.fields.file.url
+          };
+        });
+      this.relatedMediaDatas = formatMedias;
+      setTimeout(() => { this.isLoadingRelatedMedias = false; }, 100);
+    });
+  }
+
+  created () {
+    return this.requestRelatedMediaEntries({ limit: 5 });
+  }
 }

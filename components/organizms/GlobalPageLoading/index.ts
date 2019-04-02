@@ -1,5 +1,5 @@
 // NPM
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
 @Component
 export default class GlobalPageLoading extends Vue {
@@ -7,7 +7,7 @@ export default class GlobalPageLoading extends Vue {
   @Prop({ type: Number, default: null }) readonly valProgress!: number | null
   @Prop({ type: Boolean, default: false }) readonly showCircle!: boolean
 
-  get isLoadingFin() {
+  get isLoadingFin () {
     return !this.isLoading;
   }
 }

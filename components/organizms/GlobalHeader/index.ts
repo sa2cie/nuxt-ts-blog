@@ -1,10 +1,8 @@
 // NPM
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
 
 // PRODUCT
-import { CONFIG } from '@/assets/js/constants'
-
-// INTERFACE
+import { CONFIG } from '@/assets/js/constants';
 
 // CONSTANTS
 const { SITE_NAME, SITE_AUTHOR } = CONFIG;

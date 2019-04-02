@@ -1,15 +1,15 @@
 // NPM
-import { Component, Vue } from 'nuxt-property-decorator'
-import { documentToHtmlString } from "@contentful/rich-text-html-renderer";
-
-// LAYOUT
-const Box = () => import('@/layouts/blocks/box.vue')
+import { Component, Vue } from 'nuxt-property-decorator';
+import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
 
 // COMPONENT
-import PostCard from '@/components/organizms/PostCard'
+import PostCard from '@/components/organizms/PostCard';
 
 // UTILL
-import { getPostEntry } from '@/assets/js/utills/sync'
+import { getPostEntry } from '@/assets/js/utills/sync';
+
+// LAYOUT
+const Box = () => import('@/layouts/blocks/box.vue');
 
 // INTERFACE
 interface PostData {
@@ -38,10 +38,10 @@ export default class Post extends Vue {
     body: null,
     image: '',
     thumb: '',
-    date: '',
+    date: ''
   }
 
-  asyncData({ params }) {
+  asyncData ({ params }) {
     return getPostEntry(params.id, (entry) => {
       const formatPost : PostData = {
         id: entry.sys.id,
@@ -51,10 +51,9 @@ export default class Post extends Vue {
         category: entry.fields.categoryName,
         image: entry.fields.thumb.fields.file.url,
         thumb: entry.fields.thumb.fields.file.url,
-        date: entry.sys.createdAt,
-      }
-      console.log(entry);
-      return { post: formatPost }
-    })
+        date: entry.sys.createdAt
+      };
+      return { post: formatPost };
+    });
   }
 }

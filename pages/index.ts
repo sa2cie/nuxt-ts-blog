@@ -1,14 +1,14 @@
 // NPM
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
 
 // LAYOUT
-import Box from '@/layouts/blocks/box.vue'
-
-// COMPONENT
-const MediaCardList = () => import('@/components/organizms/MediaCardList')
+import Box from '@/layouts/blocks/box.vue';
 
 // UTILL
-import { getPostEntries } from '@/assets/js/utills/sync'
+import { getPostEntries } from '@/assets/js/utills/sync';
+
+// COMPONENT
+const MediaCardList = () => import('@/components/organizms/MediaCardList');
 
 // INTERFACE
 interface PostData {
@@ -38,81 +38,75 @@ export default class Index extends Vue {
 
   watchQuery = ['page']
 
-  asyncData({ env, query }) {
-    const param = {
+  asyncData ({ env, query }) {
+    const param : { limit: number; skip: number; } = {
       limit: 2,
-      skip: query.page ? 2 * (Number(query.page) - 1) : 0,
-    }
+      skip: query.page ? 2 * (Number(query.page) - 1) : 0
+    };
     return getPostEntries(env.CTF_BLOG_POST_TYPE_ID, param, (entries) => {
-      const formatPosts : PostData[] = entries.items.
-      map(value => {
-        const sys = value.sys;
-        const fields = value.fields;
-        return {
-          id: sys.id,
-          title: fields.title,
-          description: fields.description,
-          body: fields.body,
-          category: fields.categoryName,
-          image: fields.thumb.fields.file.url,
-          thumb: fields.thumb.fields.file.url,
-          date: sys.createdAt,
-        }
-      })
+      const formatPosts : PostData[] = entries.items
+        .map((value: { sys: any; fields: any; }) => {
+          const { sys, fields } = value;
+          return {
+            id: sys.id,
+            title: fields.title,
+            description: fields.description,
+            body: fields.body,
+            category: fields.categoryName,
+            image: fields.thumb.fields.file.url,
+            thumb: fields.thumb.fields.file.url,
+            date: sys.createdAt
+          };
+        });
       return {
         totalCount: entries.total,
         posts: formatPosts,
-        currentPageCount: query.page ? Number(query.page) : 1,
-      }
-    })
+        currentPageCount: query.page ? Number(query.page) : 1
+      };
+    });
   }
 
-  private requestPostEntries(params) {
-    console.log(params)
+  private requestPostEntries (params) {
     const type : string = String(process.env.CTF_BLOG_POST_TYPE_ID);
     return getPostEntries(type, params, (entries) => {
-      const formatPosts : PostData[] = entries.items.
-      map(value => {
-        const sys = value.sys;
-        const fields = value.fields;
-        return {
-          id: sys.id,
-          title: fields.title,
-          description: fields.description,
-          body: fields.body,
-          category: fields.categoryName,
-          image: fields.thumb.fields.file.url,
-          thumb: fields.thumb.fields.file.url,
-          date: sys.createdAt,
-        }
-      })
+      const formatPosts : PostData[] = entries.items
+        .map((value: { sys: any; fields: any; }) => {
+          const { sys, fields } = value;
+          return {
+            id: sys.id,
+            title: fields.title,
+            description: fields.description,
+            body: fields.body,
+            category: fields.categoryName,
+            image: fields.thumb.fields.file.url,
+            thumb: fields.thumb.fields.file.url,
+            date: sys.createdAt
+          };
+        });
       this.isLoadingPosts = false;
-      this.totalCount = entries.total
-      this.posts = formatPosts
-    }),
+      this.totalCount = entries.total;
+      this.posts = formatPosts;
+    },
     () => {
       this.isLoadingPosts = false;
       console.error();
-    }
+    });
   }
 
-  public get getPageLength(): number {
+  public get getPageLength (): number {
     if (this.totalCount === 0) return 1;
-    return Math.ceil(this.totalCount / this.viewLimitCount)
+    return Math.ceil(this.totalCount / this.viewLimitCount);
   }
 
-  private get getPageSkipCount(): number {
-    return (this.currentPageCount - 1) * this.viewLimitCount
+  private get getPageSkipCount (): number {
+    return (this.currentPageCount - 1) * this.viewLimitCount;
   }
 
-  public handlePagenation() {
-    // this.isLoadingPosts = true;
+  public handlePagenation () {
     this.currentPageCount === 1
       ? this.$router.push({ path: '' })
-      : this.$router.push({ path: '', query: { page: String(this.currentPageCount) } })
-    window.scrollTo(0, 0)
-    return this.requestPostEntries({ limit: this.viewLimitCount, skip: this.getPageSkipCount })
+      : this.$router.push({ path: '', query: { page: String(this.currentPageCount) } });
+    window.scrollTo(0, 0);
+    return this.requestPostEntries({ limit: this.viewLimitCount, skip: this.getPageSkipCount });
   }
-
-
 }

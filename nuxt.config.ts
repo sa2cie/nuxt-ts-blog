@@ -1,9 +1,9 @@
-import { Configuration } from 'webpack'
-import { Context } from '@nuxt/vue-app'
-import pkg from './package.json'
-import { getConfigForKeys } from './libs/config.js'
-import { createClient } from './plugins/contentful.js'
-import { CONFIG } from './assets/js/constants'
+import { Configuration } from 'webpack';
+import { Context } from '@nuxt/vue-app';
+import pkg from './package.json';
+import getConfigForKeys from './libs/config';
+import createClient from './plugins/contentful';
+import { CONFIG } from './assets/js/constants';
 
 // CONSTANTS
 const { SITE_NAME } = CONFIG;
@@ -12,8 +12,8 @@ const ctfConfig = getConfigForKeys([
   'CTF_SPACE_ID',
   'CTF_CDA_ACCESS_TOKEN',
   'CTF_GA_TRACKING_ID'
-])
-const cdaClient = createClient(ctfConfig)
+]);
+const cdaClient = createClient(ctfConfig);
 
 export default {
   mode: 'universal',
@@ -70,7 +70,7 @@ export default {
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
     '@nuxtjs/pwa',
-    "@nuxtjs/vuetify"
+    '@nuxtjs/vuetify'
   ],
   /*
    ** Axios module configuration
@@ -86,25 +86,28 @@ export default {
     /*
      ** You can extend webpack config here
      */
-    extend(config: Configuration, ctx: Context) {
+    extend (config: Configuration, ctx: Context) {
       // Run ESLint on save
       if (config.module && ctx.isDev && ctx.isClient) {
         config.module.rules.push(
           {
             enforce: 'pre',
-            test: /\.(js|vue)$/,
+            test: /\.(js|ts|vue)$/,
             loader: 'eslint-loader',
-            exclude: /(node_modules)/
+            exclude: /(node_modules)/,
+            options: {
+              eslintPath: 'eslint-config-airbnb-standard/node_modules/eslint'
+            }
           }
-        )
+        );
       }
     }
   },
   generate: {
-    routes() {
+    routes () {
       return cdaClient
         .getEntries({ content_type: ctfConfig.CTF_BLOG_POST_TYPE_ID })
-        .then(entries => [...entries.items.map(entry => `/post/${entry.sys.id}`)])
+        .then(entries => [...entries.items.map(entry => `/post/${entry.sys.id}`)]);
     }
   },
   env: {
@@ -113,4 +116,4 @@ export default {
     CTF_BLOG_POST_TYPE_ID: ctfConfig.CTF_BLOG_POST_TYPE_ID,
     CTF_GA_TRACKING_ID: ctfConfig.CTF_GA_TRACKING_ID
   }
-}
+};

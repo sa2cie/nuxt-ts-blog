@@ -1,5 +1,5 @@
 <!-- *************************************************************************
-	TEMPLATE
+TEMPLATE
 ************************************************************************* -->
 
 <template>
@@ -39,18 +39,18 @@
 </template>
 
 <!-- *************************************************************************
-	SCRIPT
+SCRIPT
 ************************************************************************* -->
 
 <script lang="ts">
 // NPM
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
 
 // COMPONENT
-const GlobalHeader = () => import('@/components/organizms/GlobalHeader')
-const GlobalBreadcrumb = () => import('@/components/organizms/GlobalBreadcrumb')
-const GlobalFooter = () => import('@/components/organizms/GlobalFooter')
-const GlobalPageLoading = () => import('@/components/organizms/GlobalPageLoading')
+const GlobalHeader = () => import('@/components/organizms/GlobalHeader');
+const GlobalBreadcrumb = () => import('@/components/organizms/GlobalBreadcrumb');
+const GlobalFooter = () => import('@/components/organizms/GlobalFooter');
+const GlobalPageLoading = () => import('@/components/organizms/GlobalPageLoading');
 
 @Component({
   components: {
@@ -66,7 +66,7 @@ export default class Container extends Vue {
 </script>
 
 <!-- *************************************************************************
-	STYLE
+STYLE
 ************************************************************************* -->
 
 <style lang="scss" scoped>

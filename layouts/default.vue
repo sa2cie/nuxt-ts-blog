@@ -1,5 +1,5 @@
 <!-- *************************************************************************
-	TEMPLATE
+TEMPLATE
 ************************************************************************* -->
 
 <template>
@@ -20,16 +20,16 @@
 </template>
 
 <!-- *************************************************************************
-	SCRIPT
+SCRIPT
 ************************************************************************* -->
 
 <script lang="ts">
 // NPM
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
 
 // COMPONENT
-const Container = () => import('@/layouts/container.vue')
-const GlobalSidebar = () => import('@/components/organizms/GlobalSidebar')
+const Container = () => import('@/layouts/container.vue');
+const GlobalSidebar = () => import('@/components/organizms/GlobalSidebar');
 
 @Component({
   components: {
@@ -41,7 +41,7 @@ export default class Default extends Vue {}
 </script>
 
 <!-- *************************************************************************
-	STYLE
+STYLE
 ************************************************************************* -->
 
 <style lang="scss" scoped>
