@@ -1,5 +1,5 @@
 <!-- *************************************************************************
-	TEMPLATE
+TEMPLATE
 ************************************************************************* -->
 
 <template>
@@ -9,29 +9,29 @@
 </template>
 
 <!-- *************************************************************************
-	SCRIPT
+SCRIPT
 ************************************************************************* -->
 
 <script lang="ts">
 // NPM
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
 @Component
 export default class Box extends Vue {
   @Prop({ type: Boolean, default: false }) readonly topBorderline!: boolean
   @Prop({ type: Boolean, default: false }) readonly bottomBorderline!: boolean
 
-  public get getClassBorderTop(): string {
-    return this.topBorderline ? '--hasBorderTop' : ''
+  public get getClassBorderTop (): string {
+    return this.topBorderline ? '--hasBorderTop' : '';
   }
 
-  public get getClassBorderBottom(): string {
-    return this.bottomBorderline ? '--hasBorderBottom' : ''
+  public get getClassBorderBottom (): string {
+    return this.bottomBorderline ? '--hasBorderBottom' : '';
   }
 }
 </script>
 <!-- *************************************************************************
-	STYLE
+STYLE
 ************************************************************************* -->
 
 <style lang="scss" scoped>

@@ -1,8 +1,8 @@
 // NPM
-import { Component, Vue, Prop } from 'nuxt-property-decorator'
+import { Component, Vue, Prop } from 'nuxt-property-decorator';
 
 // COMPONENT
-const ImageCard = () => import('@/components/organizms/ImageCard')
+const ImageCard = () => import('@/components/organizms/ImageCard');
 
 @Component({
   components: {

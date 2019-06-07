@@ -1,5 +1,5 @@
 <!-- *************************************************************************
-	TEMPLATE
+TEMPLATE
 ************************************************************************* -->
 
 <template>
@@ -20,16 +20,16 @@
 </template>
 
 <!-- *************************************************************************
-	SCRIPT
+SCRIPT
 ************************************************************************* -->
 
 <script lang="ts">
 // NPM
-import { Component, Vue } from 'nuxt-property-decorator'
+import { Component, Vue } from 'nuxt-property-decorator';
 
 // COMPONENT
-const Container = () => import('@/layouts/container.vue')
-const GlobalSidebar = () => import('@/components/organizms/GlobalSidebar')
+const Container = () => import('@/layouts/container.vue');
+const GlobalSidebar = () => import('@/components/organizms/GlobalSidebar');
 
 @Component({
   components: {
@@ -41,7 +41,7 @@ export default class Default extends Vue {}
 </script>
 
 <!-- *************************************************************************
-	STYLE
+STYLE
 ************************************************************************* -->
 
 <style lang="scss" scoped>
@@ -73,4 +73,24 @@ export default class Default extends Vue {}
     }
   }
 }
+
+@media screen and (max-width: 640px) {
+  /*画面サイズ 640pxまで適用*/
+  .l-content {
+    display: block;
+  }
+
+  .l-sidebar {
+    width: 100%;
+    padding: 0 8px;
+    margin-bottom: 16px;
+  }
+
+  .l-main {
+    flex: 0;
+    padding: 0 8px;
+    margin-bottom: 16px;
+  }
+}
+
 </style>
