@@ -1,4 +1,13 @@
 .imageCard {
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+
   &__category {
     display: block;
   }

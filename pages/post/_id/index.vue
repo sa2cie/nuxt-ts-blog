@@ -6,18 +6,18 @@ TEMPLATE
   <div class="page">
     <box>
       <h2 class="page__heading elevation-3 blue-grey darken-4 white--text">
-        {{ post.title }}
+        {{ sharedState.data.title }}
       </h2>
       <section>
         <post-card
-          :id="post.id"
-          :title="post.title"
-          :category="post.category"
-          :date="post.date"
-          :description="post.description"
-          :body="post.body"
-          :image="post.image"
-          :thumb="post.thumb"
+          :id="sharedState.data.id"
+          :title="sharedState.data.title"
+          :category="sharedState.data.category"
+          :date="sharedState.data.date"
+          :description="sharedState.data.description"
+          :body="sharedState.data.body"
+          :image="sharedState.data.image"
+          :thumb="sharedState.data.thumb"
         />
       </section>
     </box>

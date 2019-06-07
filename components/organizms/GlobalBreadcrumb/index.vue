@@ -4,7 +4,7 @@ TEMPLATE
 
 <template>
   <div class="breadcrumb">
-    <v-breadcrumbs :items="items"></v-breadcrumbs>
+    <v-breadcrumbs :items="getBreadCrumbs"></v-breadcrumbs>
   </div>
 </template>
 

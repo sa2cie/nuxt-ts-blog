@@ -27,6 +27,8 @@ module.exports = {
     'import/no-unresolved': 'off',
     'lines-between-class-members': 'off',
     'class-methods-use-this': 'off',
-    'vue/no-v-html': 'off'
+    'vue/no-v-html': 'off',
+    'no-shadow': ["error", { "allow": ["state"] }],
+    'no-param-reassign': 'off'
   }
 }

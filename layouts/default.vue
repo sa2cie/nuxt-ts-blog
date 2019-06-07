@@ -73,4 +73,24 @@ STYLE
     }
   }
 }
+
+@media screen and (max-width: 640px) {
+  /*画面サイズ 640pxまで適用*/
+  .l-content {
+    display: block;
+  }
+
+  .l-sidebar {
+    width: 100%;
+    padding: 0 8px;
+    margin-bottom: 16px;
+  }
+
+  .l-main {
+    flex: 0;
+    padding: 0 8px;
+    margin-bottom: 16px;
+  }
+}
+
 </style>

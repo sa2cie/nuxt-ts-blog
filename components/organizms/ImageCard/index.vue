@@ -3,7 +3,7 @@ TEMPLATE
 ************************************************************************* -->
 
 <template>
-  <nuxt-link :to="{ name: 'post-id', params: { id } }">
+  <nuxt-link class="imageCard__link" :to="{ name: 'post-id', params: { id } }">
     <v-card class="imageCard elevation-0">
       <div class="pt-3 pl-3 pr-3">
         <v-img

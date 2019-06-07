@@ -1,27 +1,16 @@
 // NPM
 import { Component, Vue } from 'nuxt-property-decorator';
 import { documentToHtmlString } from '@contentful/rich-text-html-renderer';
-
+// CONSTANTS
+import { PAGE } from '@/assets/js/constants';
 // COMPONENT
 import PostCard from '@/components/organizms/PostCard';
-
-// UTILL
-import { getPostEntry } from '@/assets/js/utills/sync';
-
+// ASSETS
+import { getPostEntry } from '@/assets/js/syncs/post';
+// INTERFACES
+import { IPostState, IPostData } from '@/interfaces/post';
 // LAYOUT
 const Box = () => import('@/layouts/blocks/box.vue');
-
-// INTERFACE
-interface PostData {
-  id : string;
-  title : string;
-  category : string;
-  description : string;
-  body : any;
-  image : string;
-  thumb : string;
-  date : string;
-}
 
 @Component({
   components: {
@@ -30,20 +19,11 @@ interface PostData {
   }
 })
 export default class Post extends Vue {
-  public post : PostData = {
-    id: '',
-    title: '',
-    category: '',
-    description: '',
-    body: null,
-    image: '',
-    thumb: '',
-    date: ''
-  }
+  public sharedState: IPostState = this.$store.state.post;
 
   asyncData ({ params }) {
     return getPostEntry(params.id, (entry) => {
-      const formatPost : PostData = {
+      const formatPost : IPostData = {
         id: entry.sys.id,
         title: entry.fields.title,
         description: entry.fields.description,
@@ -53,7 +33,18 @@ export default class Post extends Vue {
         thumb: entry.fields.thumb.fields.file.url,
         date: entry.sys.createdAt
       };
-      return { post: formatPost };
+      return {
+        sharedState: {
+          data: formatPost
+        }
+      };
     });
+  }
+
+  mounted () {
+    this.$store.commit('setBreadCrumbs', [
+      { text: PAGE.TOP_NAME, disabled: false, href: '/' },
+      { text: this.sharedState.data.title, disabled: true, href: PAGE.POST_DETAIL_PATH }
+    ]);
   }
 }

@@ -1,0 +1,12 @@
+
+@media screen and (max-width: 640px) {
+  .breadcrumb {
+    width: 100%;
+    overflow-x: scroll;
+
+    * {
+      flex-wrap: initial;
+      white-space: nowrap;
+    }
+  }
+}

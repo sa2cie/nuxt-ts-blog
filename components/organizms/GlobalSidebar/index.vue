@@ -7,7 +7,10 @@ TEMPLATE
     <section class="sidebar__widget elevation-3">
       <h3 class="sidebar__widget__heading">Related Posts</h3>
       <div class="sidebar__widget__content">
-        <image-card-list v-show="!isLoadingRelatedMedias" :data="relatedMediaDatas" />
+        <image-card-list
+          v-show="!sharedState.relatedEntries.loading"
+          :data="sharedState.relatedEntries.entries"
+        />
       </div>
     </section>
     <!-- <section class="sidebar__widget elevation-1">
