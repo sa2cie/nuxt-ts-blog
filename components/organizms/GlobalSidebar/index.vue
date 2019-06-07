@@ -1,5 +1,5 @@
 <!-- *************************************************************************
-	TEMPLATE
+TEMPLATE
 ************************************************************************* -->
 
 <template>
@@ -7,7 +7,10 @@
     <section class="sidebar__widget elevation-3">
       <h3 class="sidebar__widget__heading">Related Posts</h3>
       <div class="sidebar__widget__content">
-        <image-card-list :data="relatedPostsData" />
+        <image-card-list
+          v-show="!sharedState.relatedEntries.loading"
+          :data="sharedState.relatedEntries.entries"
+        />
       </div>
     </section>
     <!-- <section class="sidebar__widget elevation-1">
@@ -30,13 +33,13 @@
 </template>
 
 <!-- *************************************************************************
-	SCRIPT
+SCRIPT
 ************************************************************************* -->
 
 <script lang="ts" src="./index.ts" />
 
 <!-- *************************************************************************
-	STYLE
+STYLE
 ************************************************************************* -->
 
 <style lang="scss" src="./index.scss" scoped></style>

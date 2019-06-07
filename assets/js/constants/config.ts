@@ -1,4 +1,4 @@
 // サイトタイトル
-export const SITE_NAME: string = 'TipyScript'
+export const SITE_NAME: string = 'TipyScript';
 // 管理者
-export const SITE_AUTHOR: string = 'sa2cie'
+export const SITE_AUTHOR: string = 'sa2cie';
