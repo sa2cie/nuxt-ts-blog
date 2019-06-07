@@ -7,7 +7,7 @@ type Mutations = {
   successFetchRelatedMedias: (state: IGlobalState, data: any) => void,
 };
 
-export const state = (): IGlobalState => ({
+const initialState: IGlobalState = {
   global: {
     breadcrumbs: [],
     sidebar: {
@@ -18,6 +18,10 @@ export const state = (): IGlobalState => ({
       }
     }
   }
+};
+
+export const state = (): IGlobalState => ({
+  ...initialState
 });
 
 export const mutations: Mutations = {
